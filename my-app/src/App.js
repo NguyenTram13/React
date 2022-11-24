@@ -1,4 +1,5 @@
 import "./App.css";
+import Photo from "./components/photo/Photo";
 import Game from "./components/tictactoe/Game";
 // import Counter from "./components/counter/Counter";
 // import Toggle from "./components/toggle/Toggle";
@@ -55,7 +56,8 @@ function App() {
     <div>
       {/* <Toggle></Toggle>
       <Counter></Counter> */}
-      <Game></Game>
+      {/* <Game></Game> */}
+      <Photo></Photo>
     </div>
   );
 }
