@@ -1,44 +1,48 @@
-import React, { createContext, useContext, useState } from "react";
-import PhotoList from "./components/gallery/PhotoList";
-import cartList from "./components/gallery/CartList";
-
-import Headermain from "./components/HeaderMain";
-import { AuthProvider } from "./contexts/auth-context";
-import { CountProvider, useCount } from "./contexts/CountContext";
-import { GalleryProvider } from "./contexts/gallery-context";
-import CartList from "./components/gallery/CartList";
-
-function CountDisplay() {
-  const [count] = useCount();
-  return <div>The count is : {count}</div>;
-}
-function Countter() {
-  const [, setCount] = useCount();
-
-  const increment = () => setCount((c) => c + 1);
-  return (
-    <button
-      onClick={increment}
-      className="p-4 font-semibold text-white bg-purple-500 rounded-lg"
-    >
-      Increment count
-    </button>
-  );
-}
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import BlogPage from "./components/BlogPage";
+import BlogPageDetail from "./components/BlogPageDetail";
+import Nav from "./components/Nav";
+import ProfilePage from "./components/ProfilePage";
 const App = () => {
   return (
-    <div className="p-5 gap-x-5">
-      {/* <CountProvider>
-        <CountDisplay></CountDisplay>
-        <Countter></Countter>
-      </CountProvider> */}
-      <AuthProvider>
-        <GalleryProvider>
-          <Headermain></Headermain>
-          <PhotoList></PhotoList>
-          <CartList></CartList>
-        </GalleryProvider>
-      </AuthProvider>
+    <div>
+      {/* <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+              repellat perferendis, molestiae neque numquam quaerat magnam sunt
+              omnis suscipit dolorum, harum veniam ipsam sapiente porro
+              reprehenderit expedita voluptas adipisci exercitationem?
+            </div>
+          }
+        ></Route>
+        <Route path="/movie" element={<div>this is movie page</div>}></Route>
+        <Route path="/about" element={<div> this is about page</div>}></Route>
+        <Route
+          path="/mobie/:mmovieId"
+          element={<div> this is movie details of movied</div>}
+        ></Route>
+      </Routes> */}
+      {/* <Nav></Nav> */}
+      <Routes>
+        <Route path="/" element={<Nav></Nav>}>
+          <Route path="/" element={<>Home Page</>}></Route>
+          <Route path="/blog" element={<BlogPage></BlogPage>}></Route>
+          <Route
+            path="/blog/:slug"
+            element={<BlogPageDetail></BlogPageDetail>}
+          ></Route>
+
+          <Route
+            path="/profile"
+            element={<ProfilePage>Profile Page</ProfilePage>}
+          ></Route>
+        </Route>
+        <Route path="*" element={<>This is 404 page</>}></Route>
+      </Routes>
     </div>
   );
 };
